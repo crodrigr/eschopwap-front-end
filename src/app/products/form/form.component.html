@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <h2>New product</h2><button type="button" class="btn  btn-danger" routerLink="/products">List Product</button>
+    <div class="pt-3">       
+      
+        <form #productForm="ngForm">
+          <div class="row">
+            <div class="col">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="product.name" class="form-control" name="name" id="name" required  placeholder="Name" #Name="ngModel" >
+                <div class="alert alert-danger" *ngIf="Name.invalid && (Name.dirty || Name.touched)">                     
+                    <div *ngIf="Name.errors!.required">
+                    <small>El nombre es requerido</small>  
+                    </div> 
+                </div>    
+            </div>
+           </div>
+        </div>
+           <div class="col">
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="text" [(ngModel)]="product.quantity" class="form-control" name="quantity" id="quantity" required  placeholder="Quantity" #Quantity="ngModel" >
+                <div class="alert alert-danger" *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched)">                     
+                    <div *ngIf="Quantity.errors!.required">
+                    <small>El Quantity es requerido</small>  
+                    </div> 
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="purchasePrice">Purchase Price</label>
+                <input type="text" [(ngModel)]="product.purchasePrice" class="form-control" name="purchasePrice" id="purchasePrice" required  placeholder="Purchase Price" #PurchasePrice="ngModel" >
+                <div class="alert alert-danger" *ngIf="PurchasePrice.invalid && (PurchasePrice.dirty || PurchasePrice.touched)">                     
+                    <div *ngIf="PurchasePrice.errors!.required">
+                    <small>El PurchasePrice es requerido</small>  
+                    </div> 
+            </div>
+            </div>
+        </div> 
+        <div class="col">
+            <div class="form-group">
+                <label for="salePrice">Sale Price</label>
+                <input type="text" [(ngModel)]="product.salePrice" class="form-control" name="salePrice" id="salePrice" required  placeholder="Sale Price" #SalePrice="ngModel" >
+                <div class="alert alert-danger" *ngIf="SalePrice.invalid && (SalePrice.dirty || SalePrice.touched)">                     
+                    <div *ngIf="SalePrice.errors!.required">
+                    <small>El SalePrice es requerido</small>  
+                    </div> 
+            </div>
+            </div>
+        </div>   
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label for="description">Description</label>                
+                <textarea  [(ngModel)]="product.description" class="form-control" name="description" id="description" placeholder="Description" #Description="ngModel" rows="3"></textarea>
+                <div class="alert alert-danger" *ngIf="Description.invalid && (Description.dirty || Description.touched)">                     
+                    <div *ngIf="Description.errors!.required">
+                    <small>El Description es requerido</small>  
+                    </div> 
+            </div>
+            </div>
+        </div>
+            
+        <div class="row pt-3">
+            <div class="col" >                
+                <button type="submit" (click)="save()" class="btn btn-primary" *ngIf="!product.id else elseBlock" [disabled]=!productForm.form.valid>Crear</button>             
+                <ng-template #elseBlock>
+                    <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!productForm.form.valid">Editar</button>
+                </ng-template> 
+        </div>
+        </div>        
+        </form>
+      
+    </div>
+</div>
